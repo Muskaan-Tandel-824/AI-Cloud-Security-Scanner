@@ -1,5 +1,5 @@
 output "instance_public_ip" {
-  description = "Public IP of application EC2"
+  description = "Public IP address of application EC2"
   value       = aws_instance.app.public_ip
 }
 
