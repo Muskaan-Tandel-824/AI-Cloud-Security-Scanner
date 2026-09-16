@@ -1,32 +1,21 @@
-resource "aws_security_group" "app" {
-  name        = "ai-security-app-sg"
-  description = "Security group for AI security scanner application"
-  vpc_id      = aws_vpc.main.id
+variable "aws_region" {
+  description = "AWS region where resources will be created"
+  type        = string
+  default     = "ap-south-1"
+}
 
-  ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t3.micro"
+}
 
-  ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.my_ip]
-  }
+variable "key_name" {
+  description = "Existing AWS EC2 key pair name"
+  type        = string
+}
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "ai-security-app-sg"
-  }
+variable "my_ip" {
+  description = "Your public IP address in CIDR format"
+  type        = string
 }
