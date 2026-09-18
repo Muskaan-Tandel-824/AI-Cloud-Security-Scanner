@@ -59,4 +59,8 @@ resource "aws_instance" "app" {
   tags = {
     Name = "ai-security-app"
   }
+
+  lifecycle {
+    ignore_changes = [ ami ]
+  }
 }
